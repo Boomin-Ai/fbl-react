@@ -1,14 +1,9 @@
 export const initFacebookSdk = () => {
-  return new Promise((resolve, reject) => {
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: "829530768872787",
-        cookie: true,
-        xfbml: true,
-        version: "v19.0",
-      });
-      resolve();
-    };
+  window.FB.init({
+    appId: "829530768872787",
+    cookie: true,
+    xfbml: true,
+    version: "v19.0",
   });
 };
 
