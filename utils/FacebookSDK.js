@@ -1,3 +1,4 @@
+/// Facebook SDK
 export const initFacebookSdk = () => {
   return new Promise((resolve, reject) => {
     window.fbAsyncInit = () => {
