@@ -1,22 +1,21 @@
+/* eslint-disable no-unused-vars */
 // import { useState, useEffect } from "react";
-import { FacebookProvider, LoginButton } from "react-facebook";
+import { useFacebook } from "react-facebook";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const onError = (e) => {
-    console.log(e);
-  };
+  const { init } = useFacebook();
 
-  const onSuccess = (res) => {
-    console.log(res);
-  };
+  async function handleLogin() {
+    const api = await init();
+    const res = await api.login("email,public_profile");
+  }
 
   return (
-    <FacebookProvider appId="3718972341677268">
-      <LoginButton onError={onError} onSuccess={onSuccess}>
-        Continue with Facebook
-      </LoginButton>
-    </FacebookProvider>
+    <div>
+      <button onClick={handleLogin}>Login with FaceBook</button>
+    </div>
   );
 }
 
