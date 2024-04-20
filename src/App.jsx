@@ -1,42 +1,22 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import { FacebookProvider, LoginButton } from "react-facebook";
 import "./App.css";
 
-import {
-  initFacebookSdk,
-  fbLogin,
-  getFacebookLoginStatus,
-} from "../utils/FacebookSDK";
-
 function App() {
-  useEffect(() => {
-    console.log("Started use effect");
-    initFacebookSdk().then(() => {
-      getFacebookLoginStatus().then((response) => {
-        if (response == null) {
-          console.log("No login status for the person");
-        } else {
-          console.log(response);
-        }
-      });
-    });
-  }, []);
+  const onError = (e) => {
+    console.log(e);
+  };
 
-  function login() {
-    console.log("reached log in button");
-    fbLogin().then((response) => {
-      console.log(response);
-      if (response.status === "connected") {
-        console.log("Person is connected");
-      } else {
-        console.log("Person is not connected");
-      }
-    });
-  }
+  const onSuccess = (res) => {
+    console.log(res);
+  };
 
   return (
-    <div>
-      <button onClick={login}>Login to FB</button>
-    </div>
+    <FacebookProvider appId="3718972341677268">
+      <LoginButton onError={onError} onSuccess={onSuccess}>
+        Continue with Facebook
+      </LoginButton>
+    </FacebookProvider>
   );
 }
 
